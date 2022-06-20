@@ -125,10 +125,16 @@ orf_lengths = find_longest_orf(quiz_fasta,frame = 3)
 max_key = max(orf_lengths, key=orf_lengths.get)
 orf_lengths[max_key]
 
-quiz_fasta[max_key]
 orfs_in_max3 = open_reading_frames(quiz_fasta[max_key],3)
-max_key = max(orfs_in_max3, key=orfs_in_max3.get)
-len(orfs_in_max3[max_key])
+
+orf_len = []
+or_name = []
+for key in orfs_in_max3:
+    orf_len.append(len(orfs_in_max3[key]))
+    or_name.append(key)
+or_name[3]
+
+
 
 # Question 6 - What is the length of the longest ORF appearing in any sequence and in any forward reading frame?
 orf_lengths = find_longest_orf(quiz_fasta,frame = 0)
@@ -145,4 +151,45 @@ max_key = max(q7_orf_lengths, key=q7_orf_lengths.get)
 q7_orf_lengths[max_key]
 
 # Question 8 - Find the most frequently occurring repeat of length 6 in all sequences. How many times does it occur in all?
+repeats_dict = {}
+for key in quiz_fasta:
+    repeats = dna_repeats(quiz_fasta[key],6)
+    for repeat_name in repeats:
+        if not repeat_name in repeats_dict:
+            repeats_dict[repeat_name] = repeats[repeat_name]
+        else:
+            repeats_dict[repeat_name] = repeats_dict[repeat_name] + repeats[repeat_name]
+len(repeats_dict)
+# We have 2392 distinct 6-mer DNA repeats
+max_key = max(repeats_dict, key=repeats_dict.get)
+repeats_dict[max_key]
 
+# Question 9 - Find all repeats of length 12 in the input file. Let's use Max to specify the number of copies
+# of the most frequent repeat of length 12.  How many different 12-base sequences occur Max times?
+repeats_dict = {}
+for key in quiz_fasta:
+    repeats = dna_repeats(quiz_fasta[key],12)
+    for repeat_name in repeats:
+        if not repeat_name in repeats_dict:
+            repeats_dict[repeat_name] = repeats[repeat_name]
+        else:
+            repeats_dict[repeat_name] = repeats_dict[repeat_name] + repeats[repeat_name]
+len(repeats_dict)
+# We have 2392 distinct 6-mer DNA repeats
+max_key = max(repeats_dict, key=repeats_dict.get)
+repeats_dict[max_key]
+
+# Question 10 - Which one of the following repeats of length 7 has a maximum number of occurrences?
+repeats_dict = {}
+for key in quiz_fasta:
+    repeats = dna_repeats(quiz_fasta[key],7)
+    for repeat_name in repeats:
+        if not repeat_name in repeats_dict:
+            repeats_dict[repeat_name] = repeats[repeat_name]
+        else:
+            repeats_dict[repeat_name] = repeats_dict[repeat_name] + repeats[repeat_name]
+len(repeats_dict)
+repeats_dict["CGCGCCG"]
+repeats_dict["TGCGCGC"]
+repeats_dict["CATCGCC"]
+repeats_dict["GCGGCCG"]
