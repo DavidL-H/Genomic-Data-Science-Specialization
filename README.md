@@ -1,2 +1,3 @@
 # Genomic-Data-Science-Specialization
-Personal storage of scripts and course material for the Coursera specialization
+Personal storage of projects, scripts and course material for the John Hopkins Coursera specialization in Genomic Data Science
+https://www.coursera.org/specializations/genomic-data-science
